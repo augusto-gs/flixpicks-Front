@@ -1,6 +1,8 @@
+import TitleStyled from "../../styles/shared/TitleStyled";
+
 const LoginPage = () => (
   <section className="login-page">
-    <h2 className="login-title">Login to your account</h2>
+    <TitleStyled className="login-title">Login to your account</TitleStyled>
   </section>
 );
 
