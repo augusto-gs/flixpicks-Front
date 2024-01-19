@@ -1,4 +1,4 @@
-import { Movie } from "../store/features/movies/types";
+import { Movie } from "../../store/features/movies/types";
 
 export const moviesMock: Movie[] = [
   {

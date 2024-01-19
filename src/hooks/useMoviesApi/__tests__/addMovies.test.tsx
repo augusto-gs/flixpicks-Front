@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import useMoviesApi from "../useMoviesApi";
 import { providerWrapper } from "../../../testUtils/testUtils";
-import extendedMovieMocks from "../../../mocks/extendedMovieMocks";
+import extendedMovieMocks from "../../../mocks/movieMocks/extendedMovieMocks";
 import { server } from "../../../mocks/msw/node";
 import { errorHandlers } from "../../../mocks/msw/errorHandlers";
 

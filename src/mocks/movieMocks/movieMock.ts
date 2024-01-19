@@ -1,4 +1,4 @@
-import { Movie } from "../store/features/movies/types";
+import { Movie } from "../../store/features/movies/types";
 
 const movieMock: Movie = {
   _id: "65637a12d4b93a3787b660f7",

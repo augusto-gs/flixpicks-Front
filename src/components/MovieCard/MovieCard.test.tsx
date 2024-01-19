@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import MovieCard from "./MovieCard";
-import movieMock from "../../mocks/movieMock";
+import movieMock from "../../mocks/movieMocks/movieMock";
 import { customRenderWithBrowser } from "../../testUtils/testUtils";
 import userEvent from "@testing-library/user-event";
 import { server } from "../../mocks/msw/node";

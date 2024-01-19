@@ -1,8 +1,8 @@
 import { renderHook } from "@testing-library/react";
 import useMoviesApi from "../useMoviesApi";
 import { providerWrapper } from "../../../testUtils/testUtils";
-import movieMock from "../../../mocks/movieMock";
-import { modifiedMoviesMock } from "../../../mocks/moviesMocks";
+import movieMock from "../../../mocks/movieMocks/movieMock";
+import { modifiedMoviesMock } from "../../../mocks/movieMocks/moviesMocks";
 import { server } from "../../../mocks/msw/node";
 import { errorHandlers } from "../../../mocks/msw/errorHandlers";
 import { toast } from "react-toastify";

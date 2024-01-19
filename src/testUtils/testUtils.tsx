@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { moviesReducer } from "../store/features/movies/moviesSlice";
-import { moviesMock } from "../mocks/moviesMocks";
+import { moviesMock } from "../mocks/movieMocks/moviesMocks";
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";

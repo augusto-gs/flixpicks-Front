@@ -1,5 +1,5 @@
 import { http, HttpResponse } from "msw";
-import movieMock from "../movieMock";
+import movieMock from "../movieMocks/movieMock";
 
 const apiURL = import.meta.env.VITE_API_URL;
 

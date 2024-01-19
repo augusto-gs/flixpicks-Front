@@ -1,5 +1,8 @@
-import movieMock from "../../../../mocks/movieMock";
-import { modifiedMoviesMock, moviesMock } from "../../../../mocks/moviesMocks";
+import movieMock from "../../../../mocks/movieMocks/movieMock";
+import {
+  modifiedMoviesMock,
+  moviesMock,
+} from "../../../../mocks/movieMocks/moviesMocks";
 import {
   MovieStructure,
   modifyMovieActionCreator,
