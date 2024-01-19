@@ -1,12 +1,12 @@
 import { renderHook } from "@testing-library/react";
 import useMoviesApi from "../useMoviesApi";
-import { providerWrapper } from "../../testUtils/testUtils";
-import movieMock from "../../mocks/movieMock";
-import { modifiedMoviesMock } from "../../mocks/moviesMocks";
-import { server } from "../../mocks/msw/node";
-import { errorHandlers } from "../../mocks/msw/errorHandlers";
+import { providerWrapper } from "../../../testUtils/testUtils";
+import movieMock from "../../../mocks/movieMocks/movieMock";
+import { modifiedMoviesMock } from "../../../mocks/movieMocks/moviesMocks";
+import { server } from "../../../mocks/msw/node";
+import { errorHandlers } from "../../../mocks/msw/errorHandlers";
 import { toast } from "react-toastify";
-import { setStyle } from "../../utils/toastifyFunctions";
+import { setStyle } from "../../../utils/toastifyFunctions";
 
 describe("Given a modifyMovieFromApi function on a useMoviesApi", () => {
   describe("When it receives an id for the movie Arrival", () => {

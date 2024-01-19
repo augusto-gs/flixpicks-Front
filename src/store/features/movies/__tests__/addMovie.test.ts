@@ -1,5 +1,5 @@
-import extendedMovieMocks from "../../../../mocks/extendedMovieMocks";
-import { moviesMock } from "../../../../mocks/moviesMocks";
+import extendedMovieMocks from "../../../../mocks/movieMocks/extendedMovieMocks";
+import { moviesMock } from "../../../../mocks/movieMocks/moviesMocks";
 import {
   MovieStructure,
   addMovieActionCreator,

@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import movieMock from "../../mocks/movieMock";
+import movieMock from "../../mocks/movieMocks/movieMock";
 import { customRenderWithBrowser } from "../../testUtils/testUtils";
 import Background from "./Background";
 

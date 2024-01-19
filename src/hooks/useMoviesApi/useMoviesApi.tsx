@@ -3,16 +3,16 @@ import {
   Movie,
   MovieList,
   MovieWithoutId,
-} from "../store/features/movies/types";
+} from "../../store/features/movies/types";
 import { useCallback } from "react";
-import { useAppDispatch } from "../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
 import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
-} from "../store/features/UI/uiSlice";
+} from "../../store/features/UI/uiSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { setStyle } from "../utils/toastifyFunctions";
+import { setStyle } from "../../utils/toastifyFunctions";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 

@@ -5,7 +5,7 @@ import { useAppDispatch } from "../../store/hooks";
 import TitleStyled from "../../styles/shared/TitleStyled";
 import AddMoviePageStyled from "./AddMoviePageStyled";
 import { MovieWithoutId } from "../../store/features/movies/types";
-import useMoviesApi from "../../hooks/useMoviesApi";
+import useMoviesApi from "../../hooks/useMoviesApi/useMoviesApi";
 
 const AddMoviePage = (): React.ReactElement => {
   const dispatch = useAppDispatch();

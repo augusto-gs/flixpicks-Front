@@ -7,7 +7,7 @@ import { customRender } from "../../testUtils/testUtils";
 import userEvent from "@testing-library/user-event";
 import { server } from "../../mocks/msw/node";
 import { errorHandlers } from "../../mocks/msw/errorHandlers";
-import movieMock from "../../mocks/movieMock";
+import movieMock from "../../mocks/movieMocks/movieMock";
 
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual<object>("react-router-dom");
