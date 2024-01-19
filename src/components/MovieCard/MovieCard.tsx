@@ -8,7 +8,7 @@ import {
   loadSelectedMovieActionCreator,
   modifyMovieActionCreator,
 } from "../../store/features/movies/moviesSlice";
-import useMoviesApi from "../../hooks/useMoviesApi";
+import useMoviesApi from "../../hooks/useMoviesApi/useMoviesApi";
 import { useNavigate } from "react-router-dom";
 
 interface MovieCardProp {

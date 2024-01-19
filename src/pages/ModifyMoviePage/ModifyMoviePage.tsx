@@ -6,7 +6,7 @@ import {
 } from "../../store/features/movies/moviesSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import TitleStyled from "../../styles/shared/TitleStyled";
-import useMoviesApi from "../../hooks/useMoviesApi";
+import useMoviesApi from "../../hooks/useMoviesApi/useMoviesApi";
 import { MovieWithoutId } from "../../store/features/movies/types";
 import ModifyMoviePageStyled from "./ModifyMoviePageStyled";
 import { useEffect } from "react";

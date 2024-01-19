@@ -1,10 +1,10 @@
 import { renderHook } from "@testing-library/react";
 import useMoviesApi from "../useMoviesApi";
-import { providerWrapper } from "../../testUtils/testUtils";
-import { server } from "../../mocks/msw/node";
-import { errorHandlers } from "../../mocks/msw/errorHandlers";
+import { providerWrapper } from "../../../testUtils/testUtils";
+import { server } from "../../../mocks/msw/node";
+import { errorHandlers } from "../../../mocks/msw/errorHandlers";
 import { toast } from "react-toastify";
-import { setStyle } from "../../utils/toastifyFunctions";
+import { setStyle } from "../../../utils/toastifyFunctions";
 
 describe("Given a useMoviesApi custom hook", () => {
   const expectedMovieId = "65637a12d4b93a3787b660f7";

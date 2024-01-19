@@ -3,7 +3,7 @@ import Button from "../../components/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import DetailsPageStyled from "./DetailsPageStyled";
 import { useEffect } from "react";
-import useMoviesApi from "../../hooks/useMoviesApi";
+import useMoviesApi from "../../hooks/useMoviesApi/useMoviesApi";
 import { showBackgroundActionCreator } from "../../store/features/UI/uiSlice";
 import {
   deleteMovieActionCreator,
