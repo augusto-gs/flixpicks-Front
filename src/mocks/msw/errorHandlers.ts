@@ -13,4 +13,6 @@ export const errorHandlers = [
   http.get(`${apiURL}/movies/${movieMock._id}`, () => HttpResponse.error()),
 
   http.put(`${apiURL}/movies/${movieMock._id}`, () => HttpResponse.error()),
+
+  http.post(`${apiURL}/user/login`, () => HttpResponse.error()),
 ];
