@@ -38,7 +38,7 @@ describe("Given a login form component", () => {
 
       await userEvent.click(loginButton);
 
-      waitFor(() => {
+      await waitFor(() => {
         expect(screen.getByRole("textbox", { name: "Username" })).toHaveValue(
           "",
         );

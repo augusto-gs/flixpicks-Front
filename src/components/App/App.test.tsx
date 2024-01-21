@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "./App";
 import { ThemeProvider } from "styled-components";
@@ -322,6 +322,34 @@ describe("Given an App component", () => {
         await screen.findByText(errorFeedbackMessage);
 
       expect(expectedErrorFeedback).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered on the login page And the user inputs a username and password and then clicks the login button", () => {
+    test("Then it should show empty fields and a disabled button", async () => {
+      const inputText = ["Username", "Password"];
+
+      customRender(
+        <MemoryRouter initialEntries={[`/login`]}>
+          <App />
+        </MemoryRouter>,
+      );
+
+      for (const text of inputText) {
+        await userEvent.type(screen.getByRole("textbox", { name: text }), text);
+      }
+
+      const loginButton = screen.getByRole("button", { name: "Login" });
+
+      await userEvent.click(loginButton);
+
+      await waitFor(() => {
+        expect(loginButton).toBeDisabled();
+
+        screen.getAllByRole("textbox").forEach((inputField) => {
+          expect(inputField).toHaveValue("");
+        });
+      });
     });
   });
 });

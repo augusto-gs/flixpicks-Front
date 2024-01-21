@@ -8,11 +8,7 @@ const LoginPage = () => {
   const { getUserLogin } = useUserApi();
 
   const handleUserLogin = async (userCredentials: UserCredentialsStructure) => {
-    const token = await getUserLogin(userCredentials);
-
-    if (!token) {
-      return;
-    }
+    await getUserLogin(userCredentials);
   };
 
   return (
