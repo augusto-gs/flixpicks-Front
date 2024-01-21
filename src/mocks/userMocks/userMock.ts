@@ -1,6 +1,6 @@
-import { UserCredentials } from "../../types";
+import { UserCredentialsStructure } from "../../types";
 
-export const userMock: UserCredentials = {
+export const userMock: UserCredentialsStructure = {
   username: "testuser",
   password: "test1234",
 };
