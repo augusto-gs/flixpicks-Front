@@ -30,6 +30,7 @@ const useUserApi = () => {
       return token;
     } catch {
       dispatch(hideLoadingActionCreator());
+
       toast.error("Wrong credentials", setStyle("#d65745", "#F3CDC8"));
     }
   };
