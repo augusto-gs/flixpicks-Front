@@ -6,12 +6,11 @@ const useToken = () => {
   const getDecodedToken = useCallback(
     async (token: string): Promise<UserDataStructure> => {
       const decodeToken: { sub: string; name: string } = jwtDecode(token);
+
       const userData = {
         id: decodeToken.sub,
         username: decodeToken.name,
       };
-
-      console.log(userData);
 
       return userData;
     },
