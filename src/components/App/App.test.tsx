@@ -1,5 +1,5 @@
 import { fireEvent, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import App from "./App";
 import { ThemeProvider } from "styled-components";
 import mainTheme from "../../styles/mainTheme";
@@ -373,6 +373,26 @@ describe("Given an App component", () => {
       await userEvent.click(loginButton);
 
       const title = await screen.findByRole("heading", { name: homePageTitle });
+
+      expect(title).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered on the homepage and there is not a token in localStorage", () => {
+    test("Then you should see a title 'Login to your account' on a heading", async () => {
+      getItemMock.mockReturnValue(undefined);
+
+      const loginPageTitle = "Login to your account";
+
+      customRender(
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>,
+      );
+
+      const title = await screen.findByRole("heading", {
+        name: loginPageTitle,
+      });
 
       expect(title).toBeInTheDocument();
     });
