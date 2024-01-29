@@ -23,7 +23,7 @@ describe("Given a login form component", () => {
     });
   });
 
-  describe("When it is rendered on screen and the user inputs 'test1234' on usernmame field and 'test1234' on the the password field and the form button is pressed", () => {
+  describe("When it is rendered on screen and the user inputs 'test1234' on username field and 'test1234' on the the password field and the form button is pressed", () => {
     test("Then the fields should be empty", async () => {
       customRenderWithBrowser(<LoginForm actionOnClick={() => {}} />);
 

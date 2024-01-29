@@ -1,4 +1,8 @@
-import { UserCredentialsStructure } from "../../types";
+import {
+  UserCredentialsStructure,
+  UserLoggedStructure,
+  UserTokenStructure,
+} from "../../types";
 
 export const userMock: UserCredentialsStructure = {
   username: "testuser",
@@ -11,4 +15,14 @@ export const tokenMock =
 export const subMock = {
   id: "65aaba85ae1cff86cac16ff2",
   username: "Augusto Gomez",
+};
+
+export const loggedUserMock: UserTokenStructure = {
+  ...subMock,
+  token: tokenMock,
+};
+
+export const correctlyLoggedUserMock: UserLoggedStructure = {
+  ...loggedUserMock,
+  isLogged: true,
 };

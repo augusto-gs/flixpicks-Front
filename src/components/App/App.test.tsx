@@ -1,13 +1,15 @@
-import { fireEvent, screen, waitFor } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { fireEvent, screen } from "@testing-library/react";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import App from "./App";
 import { ThemeProvider } from "styled-components";
 import mainTheme from "../../styles/mainTheme";
-import { customRender } from "../../testUtils/testUtils";
+import { customRender, mockLocalStorage } from "../../testUtils/testUtils";
 import userEvent from "@testing-library/user-event";
 import { server } from "../../mocks/msw/node";
 import { errorHandlers } from "../../mocks/msw/errorHandlers";
 import movieMock from "../../mocks/movieMocks/movieMock";
+
+const { getItemMock } = mockLocalStorage();
 
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual<object>("react-router-dom");
@@ -15,6 +17,10 @@ vi.mock("react-router-dom", async () => {
     ...actual,
     useParams: vi.fn().mockReturnValue({ movieId: "65637a12d4b93a3787b660f7" }),
   };
+});
+
+beforeEach(() => {
+  getItemMock.mockReturnValue("tokenStorage");
 });
 
 describe("Given an App component", () => {
@@ -325,9 +331,29 @@ describe("Given an App component", () => {
     });
   });
 
-  describe("When it is rendered on the login page And the user inputs a username and password and then clicks the login button", () => {
+  describe("When it is rendered on the login page and the user doesn't make any input", () => {
     test("Then it should show empty fields and a disabled button", async () => {
-      const inputText = ["Username", "Password"];
+      customRender(
+        <MemoryRouter initialEntries={[`/login`]}>
+          <App />
+        </MemoryRouter>,
+      );
+
+      const loginButton = screen.getByRole("button", { name: "Login" });
+
+      expect(loginButton).toBeDisabled();
+
+      screen.getAllByRole("textbox").forEach((inputField) => {
+        expect(inputField).toHaveValue("");
+      });
+    });
+  });
+
+  describe("When it is rendered on the login page and the user fills all inputs with correct username and password", () => {
+    test("Then you should see a 'Our movies' title on a heading", async () => {
+      const fieldNames = ["Username", "Password"];
+      const userText = "test1234";
+      const homePageTitle = "Our movies";
 
       customRender(
         <MemoryRouter initialEntries={[`/login`]}>
@@ -335,21 +361,40 @@ describe("Given an App component", () => {
         </MemoryRouter>,
       );
 
-      for (const text of inputText) {
-        await userEvent.type(screen.getByRole("textbox", { name: text }), text);
+      for (const text of fieldNames) {
+        await userEvent.type(
+          screen.getByRole("textbox", { name: text }),
+          userText,
+        );
       }
 
       const loginButton = screen.getByRole("button", { name: "Login" });
 
       await userEvent.click(loginButton);
 
-      await waitFor(() => {
-        expect(loginButton).toBeDisabled();
+      const title = await screen.findByRole("heading", { name: homePageTitle });
 
-        screen.getAllByRole("textbox").forEach((inputField) => {
-          expect(inputField).toHaveValue("");
-        });
+      expect(title).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered on the homepage and there is not a token in localStorage", () => {
+    test("Then you should see a title 'Login to your account' on a heading", async () => {
+      getItemMock.mockReturnValue(undefined);
+
+      const loginPageTitle = "Login to your account";
+
+      customRender(
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>,
+      );
+
+      const title = await screen.findByRole("heading", {
+        name: loginPageTitle,
       });
+
+      expect(title).toBeInTheDocument();
     });
   });
 });
