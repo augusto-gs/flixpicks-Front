@@ -3,19 +3,16 @@ import { UserDataStructure } from "../../types";
 import { jwtDecode } from "jwt-decode";
 
 const useToken = () => {
-  const getDecodedToken = useCallback(
-    async (token: string): Promise<UserDataStructure> => {
-      const decodeToken: { sub: string; name: string } = jwtDecode(token);
+  const getDecodedToken = useCallback((token: string): UserDataStructure => {
+    const decodeToken: { sub: string; name: string } = jwtDecode(token);
 
-      const userData = {
-        id: decodeToken.sub,
-        username: decodeToken.name,
-      };
+    const userData = {
+      id: decodeToken.sub,
+      username: decodeToken.name,
+    };
 
-      return userData;
-    },
-    [],
-  );
+    return userData;
+  }, []);
 
   return { getDecodedToken };
 };
