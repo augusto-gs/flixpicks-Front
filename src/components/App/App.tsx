@@ -1,4 +1,10 @@
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import Header from "../Header/Header";
 import ListPage from "../../pages/ListPage/ListPage";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -14,18 +20,27 @@ import { hideBackgroundActionCreator } from "../../store/features/UI/uiSlice";
 import { useEffect } from "react";
 import ModifyMoviePage from "../../pages/ModifyMoviePage/ModifyMoviePage";
 import LoginPage from "../../pages/LoginPage/LoginPage";
+import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 
 const App = (): React.ReactElement => {
   const { hasBackground, isLoading } = useAppSelector((state) => state.uiState);
   const { selectedMovie } = useAppSelector((state) => state.moviesState);
   const { pathname } = useLocation();
+  const { getToken } = useLocalStorage();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (pathname !== `/${selectedMovie._id}`) {
       dispatch(hideBackgroundActionCreator());
     }
-  }, [dispatch, selectedMovie._id, pathname]);
+
+    const token = getToken();
+
+    if (!token) {
+      navigate("/login");
+    }
+  }, [dispatch, selectedMovie._id, pathname, getToken, navigate]);
 
   return (
     <>

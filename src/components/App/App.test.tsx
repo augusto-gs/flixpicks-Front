@@ -3,11 +3,13 @@ import { MemoryRouter } from "react-router-dom";
 import App from "./App";
 import { ThemeProvider } from "styled-components";
 import mainTheme from "../../styles/mainTheme";
-import { customRender } from "../../testUtils/testUtils";
+import { customRender, mockLocalStorage } from "../../testUtils/testUtils";
 import userEvent from "@testing-library/user-event";
 import { server } from "../../mocks/msw/node";
 import { errorHandlers } from "../../mocks/msw/errorHandlers";
 import movieMock from "../../mocks/movieMocks/movieMock";
+
+const { getItemMock } = mockLocalStorage();
 
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual<object>("react-router-dom");
@@ -15,6 +17,10 @@ vi.mock("react-router-dom", async () => {
     ...actual,
     useParams: vi.fn().mockReturnValue({ movieId: "65637a12d4b93a3787b660f7" }),
   };
+});
+
+beforeEach(() => {
+  getItemMock.mockReturnValue("tokenStorage");
 });
 
 describe("Given an App component", () => {

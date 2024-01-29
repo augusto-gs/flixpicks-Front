@@ -1,11 +1,21 @@
 import { renderHook, screen } from "@testing-library/react";
 import useMoviesApi from "../useMoviesApi";
-import { customRender, providerWrapper } from "../../../testUtils/testUtils";
+import {
+  customRender,
+  mockLocalStorage,
+  providerWrapper,
+} from "../../../testUtils/testUtils";
 import { moviesMock } from "../../../mocks/movieMocks/moviesMocks";
 import App from "../../../components/App/App";
 import { server } from "../../../mocks/msw/node";
 import { errorHandlers } from "../../../mocks/msw/errorHandlers";
 import { MemoryRouter } from "react-router-dom";
+
+const { getItemMock } = mockLocalStorage();
+
+beforeEach(() => {
+  getItemMock.mockReturnValue("tokenStorage");
+});
 
 describe("Given a useMoviesApi custom hook", () => {
   describe("When it calls its getMovies function", () => {
