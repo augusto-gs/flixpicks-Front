@@ -325,7 +325,7 @@ describe("Given an App component", () => {
     });
   });
 
-  describe("When it is rendered on the login page And the user inputs a username and password and then clicks the login button", () => {
+  describe("When it is rendered on the login page and the user doesn't make any input", () => {
     test("Then it should show empty fields and a disabled button", async () => {
       customRender(
         <MemoryRouter initialEntries={[`/login`]}>
@@ -340,6 +340,35 @@ describe("Given an App component", () => {
       screen.getAllByRole("textbox").forEach((inputField) => {
         expect(inputField).toHaveValue("");
       });
+    });
+  });
+
+  describe("When it is rendered on the login page and the user fills all inputs with correct username and password", () => {
+    test("Then you should see a 'Our movies' title on a heading", async () => {
+      const fieldNames = ["Username", "Password"];
+      const userText = "test1234";
+      const homePageTitle = "Our movies";
+
+      customRender(
+        <MemoryRouter initialEntries={[`/login`]}>
+          <App />
+        </MemoryRouter>,
+      );
+
+      for (const text of fieldNames) {
+        await userEvent.type(
+          screen.getByRole("textbox", { name: text }),
+          userText,
+        );
+      }
+
+      const loginButton = screen.getByRole("button", { name: "Login" });
+
+      await userEvent.click(loginButton);
+
+      const title = await screen.findByRole("heading", { name: homePageTitle });
+
+      expect(title).toBeInTheDocument();
     });
   });
 });
