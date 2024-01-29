@@ -5,9 +5,10 @@ const useLocalStorage = () => {
     localStorage.setItem(key, value);
   };
 
-  const getToken = useCallback(() => {
-    localStorage.getItem("FlixPicKsTokeN");
-  }, []);
+  const getToken = useCallback(
+    () => localStorage.getItem("FlixPicKsTokeN"),
+    [],
+  );
 
   const removeToken = (key: string) => localStorage.removeItem(key);
 
