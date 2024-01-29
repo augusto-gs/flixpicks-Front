@@ -27,7 +27,7 @@ export const handlers = [
   http.post(`${apiURL}/user/login`, () =>
     HttpResponse.json({
       token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWFhYmE4NWFlMWNmZjg2Y2FjMTZmZjIiLCJuYW1lIjoiQXVndXN0byBHb21leiIsImlhdCI6MTcwNTY4Nzc1OSwiZXhwIjoxNzA4Mjc5NzU5fQ.UURtXN1nvA_x_oE9hv327ewXPlMCIJjp_mHBwtMunyE",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWFhYmE4NWFlMWNmZjg2Y2FjMTZmZjIiLCJuYW1lIjoiQXVndXN0byBHb21leiIsImlhdCI6MTcwNjI3MjEzMCwiZXhwIjoxNzA4ODY0MTMwfQ.cDYCydtNUdocAkb7y7xwLBGPNrcl8K-WhMIW15RhLTE",
     }),
   ),
 ];

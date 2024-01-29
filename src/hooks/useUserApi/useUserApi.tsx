@@ -1,5 +1,5 @@
 import axios from "axios";
-import { UserCredentials } from "../../types";
+import { UserCredentialsStructure } from "../../types";
 import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
@@ -14,7 +14,7 @@ const useUserApi = () => {
   const dispatch = useAppDispatch();
 
   const getUserLogin = async (
-    userCredentials: UserCredentials,
+    userCredentials: UserCredentialsStructure,
   ): Promise<string | undefined> => {
     try {
       dispatch(showLoadingActionCreator());
@@ -29,6 +29,8 @@ const useUserApi = () => {
 
       return token;
     } catch {
+      dispatch(hideLoadingActionCreator());
+
       toast.error("Wrong credentials", setStyle("#d65745", "#F3CDC8"));
     }
   };
