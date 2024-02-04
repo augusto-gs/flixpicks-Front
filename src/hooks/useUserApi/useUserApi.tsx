@@ -22,7 +22,8 @@ const useUserApi = () => {
       const {
         data: { token },
       } = await axios.post<{ token: string }>("/user/login", {
-        userCredentials,
+        username: userCredentials.username,
+        password: userCredentials.password,
       });
 
       dispatch(hideLoadingActionCreator());
