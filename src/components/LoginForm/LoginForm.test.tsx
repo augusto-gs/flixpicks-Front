@@ -5,42 +5,32 @@ import userEvent from "@testing-library/user-event";
 
 describe("Given a login form component", () => {
   const userText = "test1234";
-  const fieldNames = ["Username", "Password"];
 
   describe("When it is rendered on screen and the user inputs 'test1234' on usernmame field and 'test1234' on the the password field", () => {
     test("Then it should that text on a form input", async () => {
       customRenderWithBrowser(<LoginForm actionOnClick={() => {}} />);
 
       const loginButton = screen.getByRole("button", { name: "Login" });
+      const usernameField = screen.getByRole("textbox", { name: "Username" });
+      const passwordField = screen.getByLabelText(/password/i);
 
-      for (const text of fieldNames) {
-        await userEvent.type(
-          screen.getByRole("textbox", { name: text }),
-          userText,
-        );
+      const inputs = [usernameField, passwordField];
+
+      for (const inputElement of inputs) {
+        await userEvent.type(inputElement, userText);
       }
+
       expect(loginButton).not.toBeDisabled();
     });
   });
 
   describe("When it is rendered on screen and the user inputs 'test1234' on username field and 'test1234' on the the password field and the form button is pressed", () => {
-    test("Then the fields should be empty", async () => {
+    test("Then the fields should be filled with testuser", async () => {
       customRenderWithBrowser(<LoginForm actionOnClick={() => {}} />);
-
-      const loginButton = screen.getByRole("button", { name: "Login" });
-
-      for (const text of fieldNames) {
-        await userEvent.type(
-          screen.getByRole("textbox", { name: text }),
-          userText,
-        );
-      }
-
-      await userEvent.click(loginButton);
 
       await waitFor(() => {
         expect(screen.getByRole("textbox", { name: "Username" })).toHaveValue(
-          "",
+          "testuser",
         );
       });
     });

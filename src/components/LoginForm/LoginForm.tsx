@@ -9,8 +9,8 @@ interface LoginFormProps {
 
 const LoginForm = ({ actionOnClick }: LoginFormProps) => {
   const initialUserCredentials: UserCredentialsStructure = {
-    username: "",
-    password: "",
+    username: "testuser",
+    password: "testuser",
   };
 
   const [userCredentials, setUserCredentials] =
@@ -56,7 +56,7 @@ const LoginForm = ({ actionOnClick }: LoginFormProps) => {
         {" "}
         Password
         <input
-          type="text"
+          type="password"
           className="login-form__control"
           id="password"
           onChange={onChangeUserData}
