@@ -3,12 +3,18 @@ import {
   loggedUserMock,
 } from "../../../mocks/userMocks/userMock";
 import { UserLoggedStructure } from "../../../types";
-import { userLoginActionCreator, userReducer } from "./userSlice";
+import {
+  userLoginActionCreator,
+  userLogoutActionCreator,
+  userReducer,
+} from "./userSlice";
+
+let initialState: UserLoggedStructure;
 
 describe("Given a userSlice with a loginUser reducer", () => {
-  describe("When it receives a currentState and a user with a token", () => {
+  describe("When it receives a current state and a user with a token", () => {
     test("Then it should return the new state with the logged in user", () => {
-      const initialState: UserLoggedStructure = {
+      initialState = {
         id: "",
         isLogged: false,
         token: "",
@@ -21,6 +27,21 @@ describe("Given a userSlice with a loginUser reducer", () => {
       );
 
       expect(actualUserState).toStrictEqual(correctlyLoggedUserMock);
+    });
+  });
+});
+
+describe("Given a userSlice with a logoutUser reducer", () => {
+  describe("When it is called", () => {
+    test("Then it should reset the current state to the initial state", () => {
+      const loggedInInitialState: UserLoggedStructure = correctlyLoggedUserMock;
+
+      const currentState = userReducer(
+        loggedInInitialState,
+        userLogoutActionCreator(),
+      );
+
+      expect(currentState).toStrictEqual(initialState);
     });
   });
 });
