@@ -351,7 +351,6 @@ describe("Given an App component", () => {
 
   describe("When it is rendered on the login page and the user fills all inputs with correct username and password", () => {
     test("Then you should see a 'Our movies' title on a heading", async () => {
-      const fieldNames = ["Username", "Password"];
       const userText = "test1234";
       const homePageTitle = "Our movies";
 
@@ -361,14 +360,15 @@ describe("Given an App component", () => {
         </MemoryRouter>,
       );
 
-      for (const text of fieldNames) {
-        await userEvent.type(
-          screen.getByRole("textbox", { name: text }),
-          userText,
-        );
-      }
-
+      const usernameField = screen.getByRole("textbox", { name: "Username" });
+      const passwordField = screen.getByLabelText(/password/i);
       const loginButton = screen.getByRole("button", { name: "Login" });
+
+      const inputs = [usernameField, passwordField];
+
+      for (const inputElement of inputs) {
+        await userEvent.type(inputElement, userText);
+      }
 
       await userEvent.click(loginButton);
 
@@ -393,6 +393,26 @@ describe("Given an App component", () => {
       const title = await screen.findByRole("heading", {
         name: loginPageTitle,
       });
+
+      expect(title).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered on screen and the user clicks on the logout button", () => {
+    test("Then it should navigate to the login page", async () => {
+      const logintitle = "Login to your account";
+      const buttonText = "logout icon";
+
+      customRender(
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>,
+      );
+
+      const logoutButton = screen.getByRole("button", { name: buttonText });
+      await userEvent.click(logoutButton);
+
+      const title = await screen.findByRole("heading", { name: logintitle });
 
       expect(title).toBeInTheDocument();
     });
