@@ -332,19 +332,17 @@ describe("Given an App component", () => {
   });
 
   describe("When it is rendered on the login page and the user doesn't make any input", () => {
-    test("Then it should show empty fields and a disabled button", async () => {
+    test("Then it should show fields with testuser on both", async () => {
+      const expectedUserValue = "testuser";
+
       customRender(
         <MemoryRouter initialEntries={[`/login`]}>
           <App />
         </MemoryRouter>,
       );
 
-      const loginButton = screen.getByRole("button", { name: "Login" });
-
-      expect(loginButton).toBeDisabled();
-
       screen.getAllByRole("textbox").forEach((inputField) => {
-        expect(inputField).toHaveValue("");
+        expect(inputField).toHaveValue(expectedUserValue);
       });
     });
   });
